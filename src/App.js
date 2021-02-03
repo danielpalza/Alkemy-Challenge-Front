@@ -1,25 +1,30 @@
-import Add from "./componentes/Add"
-import {useState} from "react"
+
+import Main from "./componentes/Main"
+import ProtectedRoute from "./componentes/ProtectedRoute"
+import Login from "./componentes/Login"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+
+} from "react-router-dom";
 
 function App() {
-  const [ruta, setRuta] = useState("main")
-
-  //Usar react router para mejor uso
-
-  let lista = <h2>Lista</h2>;
+  
 
   return (
-    <div>
-      <header>
-       <h1>Administracion</h1>
-       <button onClick={()=> setRuta("add")}>Cargar</button>
-      </header>
-      <main>
-        <div>
-          {ruta==="main"? lista:<Add/>}
-        </div>
-     </main>
-    </div>
+  
+    <Router>
+        <Switch>
+          <Route path="/login">
+              <Login/>
+          </Route>
+          <ProtectedRoute exact path="/">
+              <Main/>
+          </ProtectedRoute>
+       </Switch>
+     
+    </Router>
   );
 }
 

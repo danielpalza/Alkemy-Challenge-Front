@@ -20,7 +20,7 @@ export default function Main(){
             
             <main>
                 <Switch>
-                    <Route path="/list">
+                    <Route exact path="/list">
                         <List/>
                     </Route>
                     <Route path="/add">

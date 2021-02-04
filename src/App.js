@@ -1,6 +1,6 @@
 import Main from "./componentes/Main";
 import {useState} from "react"
-import Login from "./componentes/Login";
+import Inicio from "./componentes/Inicio";
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,12 +33,12 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/login" render={() => (isLogin ? <Redirect exact to="/" /> : <Login isLogin={setIsLogin} />)} />
+        <Route path="/inicio" render={() => (isLogin ? <Redirect exact to="/" /> : <Inicio isLogin={setIsLogin}/>)} />
 
         <Route
           exact
           path="/"
-          render={() => (Auth()  ? <Redirect to="/login" /> : <Main />)}
+          render={() => (Auth()  ? <Redirect to="/inicio" /> : <Main />)}
         />
       </Switch>
     </Router>

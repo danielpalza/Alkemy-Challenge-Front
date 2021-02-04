@@ -1,3 +1,4 @@
+import Fetch from "../services/Fetch"
 import { Link } from "react-router-dom";
 
 function Add() {

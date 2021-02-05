@@ -50,7 +50,7 @@ export default function Login(p) {
             onClick={() => handleLogin()}
             className="bg-green-300 p-3 m-5 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200"
           >
-            Enviar
+            Iniciar sesion
           </button>
           <Link to={`${url}/register`}>
             <button className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">

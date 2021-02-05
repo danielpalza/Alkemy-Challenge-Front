@@ -1,11 +1,10 @@
 import Fetch from "../../services/Fetch";
 import { useState } from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+
 
 export default function Login(p) {
   const [user, setUser] = useState({ email: "", password: "" });
-  let { path, url } = useRouteMatch();
-
+ 
   const handleLogin = () => {
     if (user.password.length > 0 && user.email.length > 0) {
       Fetch("POST", "/usuario/login", user, "", handleResponse);
@@ -52,11 +51,11 @@ export default function Login(p) {
           >
             Iniciar sesion
           </button>
-          <Link to={`${url}/register`}>
-            <button className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">
+          
+            <button onClick={()=>p.handleRender()} className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">
               Registrarse
             </button>
-          </Link>
+          
         </div>
       </div>
     </div>

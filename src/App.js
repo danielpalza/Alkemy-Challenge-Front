@@ -1,18 +1,13 @@
 import Main from "./componentes/Main";
-import {useState} from "react"
+import {useState,useEffect, Fragment} from "react"
 import Inicio from "./componentes/Inicio";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+
 
 function App() {
   
   let [isLogin, setIsLogin] = useState(false)
 
-  console.log("token: ", localStorage.getItem("token"))
+
   //Comprabacion del token
   const Auth = () => {
     if (localStorage.getItem("token")) {
@@ -21,12 +16,12 @@ function App() {
       xmlhttp.open("GET", urlRoot, true);
       xmlhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-          localStorage.setItem("token", JSON.parse(this.responseText).token);
-          console.log("response app: ", JSON.parse(this.responseText))
-          return JSON.parse(this.responseText).status == "ok" ? true : false;
+          localStorage.setItem("token", JSON.parse(this.responseText).response.token);
+          console.log("response app: ", JSON.parse(this.responseText).response.token)
+          setIsLogin(true)
         }
         if (this.readyState == 4 && this.status == 500 || this.status == 403){
-          return false
+          setIsLogin(false)
         }
       };
       xmlhttp.setRequestHeader("token", localStorage.getItem("token")? localStorage.getItem("token"): "");
@@ -34,19 +29,18 @@ function App() {
       xmlhttp.send();
     }
   };
-  console.log("isLogin: ", isLogin)
-  return (
-    <Router>
-      <Switch>
-        <Route path="/inicio" render={() => (isLogin ? <Main isLogin={setIsLogin}/> : <Inicio isLogin={setIsLogin}/>)} />
 
-        <Route
-          exact
-          path="/"
-          render={() => (Auth() ? <Main isLogin={setIsLogin}/> :  <Redirect to="/inicio" /> )}
-        />
-      </Switch>
-    </Router>
+  useEffect(()=>{
+    Auth()
+  },[])
+  
+  
+
+
+  return (
+      <Fragment>
+        {isLogin ? <Main isLogin={setIsLogin}/> : <Inicio isLogin={setIsLogin}/>}
+      </Fragment>  
   );
 }
 

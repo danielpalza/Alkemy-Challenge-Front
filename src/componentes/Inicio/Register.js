@@ -1,6 +1,6 @@
 import Fetch from "../../services/Fetch";
 import { useState } from "react";
-import {Link } from "react-router-dom";
+
 
 export default function Register(p) {
   const [user, setUser] = useState({
@@ -31,6 +31,7 @@ export default function Register(p) {
    console.log("register response: ",e )
     if (e.status === "ok") {
         alert("Usuario creado")
+        p.handleRender()
               
     }
     if(e.status==="Error"){
@@ -70,11 +71,11 @@ export default function Register(p) {
           >
             Registrarse
           </button>
-          <Link exact to={`/inicio`}>
-            <button className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">
+         
+            <button onClick={()=>p.handleRender()} className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">
               Iniciar sesion
             </button>
-          </Link>
+         
         </div>
       </div>
     </div>

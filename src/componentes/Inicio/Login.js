@@ -29,20 +29,21 @@ export default function Login(p) {
 
   return (
     <div className="flex justify-center h-screen items-center">
-      <div className="rounded w-1/4 bg-green-300 flex flex-col p-10">
+      <div className="rounded w-screen h-screen md:w-auto md:h-auto bg-green-300 flex flex-col text-center p-8">
+      <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans ">Login</h1>
         <input
           name="email"
           placeholder="Email..."
           onChange={handleChange}
           type="text"
-          className="p-2  m-10"
+          className="p-2  m-5 md:m-8"
         />
         <input
           name="password"
           placeholder="Contraseña..."
           onChange={handleChange}
           type="password"
-          className="m-10 p-2"
+          className="m-5 md:m-8 p-2"
         />
         <div className="flex flex-col justify-center items-center">
           <button

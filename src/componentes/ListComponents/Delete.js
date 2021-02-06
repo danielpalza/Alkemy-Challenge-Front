@@ -16,7 +16,7 @@ export default function Delete(p){
     const handleResponse = (e) => {
         if (e.status == "ok") {
           alert("Operacion borrada");
-          p.setOpr(p.opr.filter(a=>a.id_operacion!=p.body.id_operacion))
+          p.setOpr([])
           p.setLBM("L")
           
         }
@@ -27,7 +27,7 @@ export default function Delete(p){
     
     return(
         <div className="flex justify-center h-2/4 items-center">
-        <div className="m-5 rounded w-1/4 bg-green-300 flex flex-col p-5 text-center font-sans">
+        <div className="m-5 rounded w-auto h-auto md:h-auto bg-green-300 flex flex-col p-5 text-center font-sans">
          <h2 className="text-2xl">¿Desea eliminar la operacion?</h2>
                 
          <div className="flex flex-col justify-center items-center">

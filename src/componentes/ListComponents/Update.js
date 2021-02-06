@@ -1,10 +1,12 @@
 import Fetch from "../../services/Fetch";
+import toMoney from 'number-to-money';
+import parseMoney from 'parse-money';
 import { useState } from "react";
 
 export default function Update(p) {
   const [opr, setOpr] = useState({
     concepto: p.body.concepto,
-    monto: p.body.monto.toString(),
+    monto: "$"+toMoney(p.body.monto),
     fecha: p.body.fecha,
   });
 
@@ -15,7 +17,7 @@ export default function Update(p) {
         "/operacion/updateOperacion",
         {
           ...opr,
-          monto: parseInt(opr.monto),
+          monto: parseMoney(opr.monto).amount,
           id_operacion: p.body.id_operacion,
         },
         localStorage.getItem("token"),
@@ -29,20 +31,7 @@ export default function Update(p) {
   const handleResponse = (e) => {
     if (e.status == "ok") {
       alert("Operacion actualizada");
-      p.setOpr(
-        p.opr.map((a) => {
-          if (a.id_operacion == p.body.id_operacion) {
-            return {
-              ...a,
-              concepto: opr.concepto,
-              monto: opr.monto,
-              fecha: opr.fecha,
-            };
-          } else {
-            return a;
-          }
-        })
-      );
+      p.setOpr([]);
       p.setLBM("L");
     }
     if (e.status == "Error") {
@@ -57,11 +46,11 @@ export default function Update(p) {
 
   return (
     <div className="flex justify-center h-2/4 items-center">
-      <div className="m-5 rounded w-1/4 bg-green-300 flex flex-col p-5 text-center font-sans">
+      <div className="m-5 rounded w-auto h-auto md:h-auto bg-green-300 flex flex-col p-5 text-center font-sans">
         <h2 className="text-2xl">Modificar operacion</h2>
         <input
           name="concepto"
-          className="m-5 p-2"
+          className="m-3  md:m-5  p-2"
           onChange={handleChange}
           value={opr.concepto}
           placeholder="Concepto"
@@ -70,7 +59,7 @@ export default function Update(p) {
 
         <input
           name="monto"
-          className="m-5 p-2"
+          className="m-3  md:m-5  p-2"
           onChange={handleChange}
           value={opr.monto}
           placeholder="Monto"
@@ -78,7 +67,7 @@ export default function Update(p) {
         />
         <input
           name="fecha"
-          className="m-5 p-2"
+          className="m-3  md:m-5  p-2"
           onChange={handleChange}
           value={opr.fecha}
           type="date"

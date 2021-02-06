@@ -64,9 +64,9 @@ function List() {
   return lbm == "L" ? (
     <ul>{list.length > 0 && list.map((a) => a)}</ul>
   ) : lbm == "M" ? (
-    <Update body={body} setLBM={setLBM} />
+    <Update body={body} setOpr={setOpr} opr={opr} setLBM={setLBM} />
   ) : (
-    <Delete body={body} setLBM={setLBM} />
+    <Delete body={body} setOpr={setOpr} opr={opr} setLBM={setLBM} />
   );
 }
 

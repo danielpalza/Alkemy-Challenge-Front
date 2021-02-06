@@ -1,21 +1,23 @@
 import Fetch from "../../services/Fetch";
 import { useState } from "react";
 
-
 export default function Update(p) {
-  const [operacion, setOperacion] = useState({
-    
-    concepto: "",
-    monto: "",
-    fecha: "",
+  const [opr, setOpr] = useState({
+    concepto: p.body.concepto,
+    monto: p.body.monto.toString(),
+    fecha: p.body.fecha,
   });
-  
+
   const handleUpdate = () => {
-    if (Object.values(operacion).every((a) => a.length > 0)) {
+    if (Object.values(opr).every((a) => a.length > 0)) {
       Fetch(
         "POST",
         "/operacion/updateOperacion",
-        { ...operacion, monto: parseInt(operacion.monto) },
+        {
+          ...opr,
+          monto: parseInt(opr.monto),
+          id_operacion: p.body.id_operacion,
+        },
         localStorage.getItem("token"),
         handleResponse
       );
@@ -27,8 +29,21 @@ export default function Update(p) {
   const handleResponse = (e) => {
     if (e.status == "ok") {
       alert("Operacion actualizada");
-      
-      
+      p.setOpr(
+        p.opr.map((a) => {
+          if (a.id_operacion == p.body.id_operacion) {
+            return {
+              ...a,
+              concepto: opr.concepto,
+              monto: opr.monto,
+              fecha: opr.fecha,
+            };
+          } else {
+            return a;
+          }
+        })
+      );
+      p.setLBM("L");
     }
     if (e.status == "Error") {
       alert("No se pudo actualizar la operacion");
@@ -36,9 +51,10 @@ export default function Update(p) {
   };
 
   const handleChange = (e) => {
-    setOperacion({ ...operacion, [e.target.name]: e.target.value });
+    setOpr({ ...opr, [e.target.name]: e.target.value });
   };
-  console.log("operacion: ", operacion)
+  console.log("operacion: ", opr);
+
   return (
     <div className="flex justify-center h-2/4 items-center">
       <div className="m-5 rounded w-1/4 bg-green-300 flex flex-col p-5 text-center font-sans">
@@ -47,6 +63,7 @@ export default function Update(p) {
           name="concepto"
           className="m-5 p-2"
           onChange={handleChange}
+          value={opr.concepto}
           placeholder="Concepto"
           type="text"
         />
@@ -55,6 +72,7 @@ export default function Update(p) {
           name="monto"
           className="m-5 p-2"
           onChange={handleChange}
+          value={opr.monto}
           placeholder="Monto"
           type="text"
         />
@@ -62,10 +80,10 @@ export default function Update(p) {
           name="fecha"
           className="m-5 p-2"
           onChange={handleChange}
-          placeholder="Fecha"
+          value={opr.fecha}
           type="date"
         />
-      
+
         <div className="flex flex-col justify-center items-center">
           <button
             onClick={() => handleUpdate()}
@@ -73,15 +91,15 @@ export default function Update(p) {
           >
             Actualizar
           </button>
-          
-          <button onClick={()=>p.handleRender()} className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">
-              Cancelar
+
+          <button
+            onClick={() => p.setLBM("L")}
+            className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200"
+          >
+            Cancelar
           </button>
-         
         </div>
       </div>
     </div>
   );
 }
-
-

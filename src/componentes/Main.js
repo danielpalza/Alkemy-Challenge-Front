@@ -20,8 +20,8 @@ export default function Main(e){
             <header className="bg-green-300 flex justify-between p-4">
                 <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans">Administracion</h1>
                 <div>
-                    <button onClick={handleRender} className="m-2 bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">Agregar operacion</button>
-                    <button onClick={handleLogOut} className=" m-2 bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">Salir</button>
+                    <button onClick={handleRender} className="m-2 bg-green-400 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-500 hover:scale-110 duration-200">Agregar operacion</button>
+                    <button onClick={handleLogOut} className=" m-2 bg-green-400 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-500 hover:scale-110 duration-200">Cerrar sesion</button>
                 
                 </div>   
             </header>

@@ -4,7 +4,27 @@ export default function Delete(p){
 
     const handleDelete=()=>{
         console.log(p.body)
+
+        Fetch(
+            "POST",
+            "/operacion/deleteOperacion",
+            { id_operacion:p.body.id_operacion },
+            localStorage.getItem("token"),
+            handleResponse)
     }
+    
+    const handleResponse = (e) => {
+        if (e.status == "ok") {
+          alert("Operacion borrada");
+          p.setOpr(p.opr.filter(a=>a.id_operacion!=p.body.id_operacion))
+          p.setLBM("L")
+          
+        }
+        if (e.status == "Error") {
+          alert("No se pudo crear la operacion");
+        }
+      };
+    
     return(
         <div className="flex justify-center h-2/4 items-center">
         <div className="m-5 rounded w-1/4 bg-green-300 flex flex-col p-5 text-center font-sans">

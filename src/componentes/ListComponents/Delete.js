@@ -16,7 +16,7 @@ export default function Delete(p){
     const handleResponse = (e) => {
         if (e.status == "ok") {
           alert("Operacion borrada");
-          p.setOpr([])
+          p.setBan(!p.ban)
           p.setLBM("L")
           
         }

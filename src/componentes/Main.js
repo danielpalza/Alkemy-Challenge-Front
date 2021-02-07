@@ -8,7 +8,7 @@ import {Fragment,useState, useEffect } from "react"
 
 export default function Main(e){
     const [render, setRender] = useState(false)
-    const [opr, setOpr] = useState([]);
+    const [ban, setBan] = useState(false)
     const [balance, setBalance]= useState()
 
     const handleRender= ()=>{
@@ -19,9 +19,7 @@ export default function Main(e){
         e.isLogin(false)
     }
     
-  const handleResponseOpr = (e) => {
-    setOpr(e.response);
-  };
+ 
   const handleResponse = (e) => {
     setBalance(e.response);
     
@@ -29,21 +27,14 @@ export default function Main(e){
 
 
     useEffect(() => {
-        Fetch(
-          "GET",
-          "/operacion/getOperaciones",
-          {},
-          localStorage.getItem("token"),
-          handleResponseOpr
-        );
-        Fetch(
-            "GET",
-            "/operacion/getBalance",
-            {},
-            localStorage.getItem("token"),
-            handleResponse
-          );
-      }, [opr]);
+            Fetch(
+                "GET",
+                "/operacion/getBalance",
+                {},
+                localStorage.getItem("token"),
+                handleResponse
+            );
+      }, [ban]);
 
       
 
@@ -52,7 +43,7 @@ export default function Main(e){
             <header className="bg-green-300 flex flex-col md:flex-row text-center justify-between p-4">
                 <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans">Administracion</h1>
                 <div>
-                     <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans">Balance: ${balance!=undefined&&toMoney(balance)}</h1>
+                     <h1 className="text-2xl md:text-3x1 font-bold tracking-tight text-green-900 font-sans">Balance: ${balance!=undefined&&toMoney(balance)}</h1>
                 </div>
                 <div>
                     <button onClick={handleRender} className="m-2 bg-green-400 p-2 md:p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-500 hover:scale-110 duration-200">Agregar operacion</button>
@@ -62,7 +53,7 @@ export default function Main(e){
             </header>
             
             <main>
-               {render?<Add opr={opr} setOpr={setOpr} handleRender={handleRender}/>:<List opr={opr} setOpr={setOpr} setBalance={setBalance}/>}
+               {render?<Add handleRender={handleRender}/>:<List setBan={setBan} ban={ban} />}
             </main>
         </Fragment>
         

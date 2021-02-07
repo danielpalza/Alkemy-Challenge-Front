@@ -28,7 +28,7 @@ function Add(p) {
   const handleResponse = (e) => {
     if (e.status == "ok") {
       alert("Operacion creada");
-      p.setOpr([])
+      
       p.handleRender(false);
     }
     if (e.status == "Error") {

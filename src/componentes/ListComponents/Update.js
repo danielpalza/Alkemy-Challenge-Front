@@ -31,7 +31,7 @@ export default function Update(p) {
   const handleResponse = (e) => {
     if (e.status == "ok") {
       alert("Operacion actualizada");
-      p.setOpr([]);
+      p.setBan(!p.ban)
       p.setLBM("L");
     }
     if (e.status == "Error") {

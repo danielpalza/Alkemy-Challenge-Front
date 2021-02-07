@@ -7,8 +7,26 @@ import Delete from "./ListComponents/Delete";
 function List(p) {
  
   const [list, setList] = useState([]);
+  const [opr, setOpr] = useState([]);
+  const [ban, setBan] = useState(false)
   const [lbm, setLBM] = useState("L");
   const [body, setBody] = useState();
+
+  const handleResponse = (e) => {
+    setOpr(e.response);
+  };
+
+  useEffect(() => {
+    Fetch(
+        "GET",
+        "/operacion/getOperaciones",
+        {},
+        localStorage.getItem("token"),
+        handleResponse
+        );
+    p.setBan(!p.ban)    
+   
+}, [ban]);
 
   
   
@@ -18,10 +36,10 @@ function List(p) {
     const firstLetterUpperCase = (str) =>
       str.charAt(0).toUpperCase().concat(str.substring(1, str.length));
     const dateFormat = (date) => date.split("-").reverse().join("/");
-    if (p.opr.length > 0) {
+    if (opr.length > 0) {
       //Render list
       setList(
-        p.opr.map((a) => {
+        opr.map((a) => {
           const loadBody=(b)=>{
             setLBM(b)
             setBody(a)
@@ -51,14 +69,14 @@ function List(p) {
         })
       );
     }
-  }, [p.opr]);
+  }, [opr]);
 
   return lbm == "L" ? (
     <ul>{list.length > 0 && list.map((a) => a)}</ul>
   ) : lbm == "M" ? (
-    <Update body={body} setOpr={p.setOpr} opr={p.opr} setLBM={setLBM} />
+    <Update body={body} setBan={setBan} ban={ban} setOpr={setOpr} opr={opr} setLBM={setLBM} />
   ) : (
-    <Delete body={body} setOpr={p.setOpr} opr={p.opr} setLBM={setLBM} />
+    <Delete body={body} setBan={setBan} ban={ban} setOpr={setOpr} opr={opr} setLBM={setLBM} />
   );
 }
 

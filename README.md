@@ -1,8 +1,8 @@
-## Alkemy-Challenge-Backend - Aplicacion de administración contable
+# Alkemy-Challenge-Backend - Aplicacion de administración contable
 
 Esta es una app creada para llevar a cabo un registro de los gastos, tanto ingresos como egresos, y obtener un balance.
 
-# Instrucciones de uso
+## Instrucciones de uso
 
 - Clonar el repositorio de la API: https://github.com/danielpalza/Alkemy-Challenge-Backend
 - Seguir las instrucciones para ejecutar la API
@@ -10,4 +10,4 @@ Esta es una app creada para llevar a cabo un registro de los gastos, tanto ingre
 - Ejecutar: "npm install"
 -           "npm start"
 
-# Creado en React y TailwindCss, por Daniel F. Palza.
+### Creado en React y TailwindCss, por Daniel F. Palza.

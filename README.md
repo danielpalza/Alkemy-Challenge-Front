@@ -2,6 +2,15 @@
 
 Esta es una app creada para llevar a cabo un registro de los gastos, tanto ingresos como egresos, y obtener un balance.
 
+---
+
+## Demo
+
+![Login](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/Login.JPG) 
+
+![Interfaz](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/Interfaz.JPG)
+
+![Movil](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/Movil.JPG)
 
 
 ## Instrucciones de uso

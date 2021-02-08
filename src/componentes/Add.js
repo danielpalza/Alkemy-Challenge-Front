@@ -1,5 +1,5 @@
 import Fetch from "../services/Fetch";
-import parseMoney from 'parse-money';
+import parseMoney from "parse-money";
 import { useState } from "react";
 
 function Add(p) {
@@ -19,7 +19,6 @@ function Add(p) {
         localStorage.getItem("token"),
         handleResponse
       );
-     
     } else {
       alert("Debe completar todos los campos");
     }
@@ -28,7 +27,7 @@ function Add(p) {
   const handleResponse = (e) => {
     if (e.status == "ok") {
       alert("Operacion creada");
-      
+
       p.handleRender(false);
     }
     if (e.status == "Error") {
@@ -39,7 +38,7 @@ function Add(p) {
   const handleChange = (e) => {
     setOpr({ ...opr, [e.target.name]: e.target.value });
   };
-  
+
   return (
     <div className="flex justify-center h-2/4 items-center">
       <div className="m-5 rounded w-auto h-auto md:h-auto bg-green-300 flex flex-col p-5 text-center font-sans">

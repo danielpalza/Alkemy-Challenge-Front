@@ -1,8 +1,9 @@
+//Send y Receive Json data through ajax
+
 export default function Fetch(method, url, body = {}, token = "", action = {}) {
   let urlRoot = "http://localhost:4000" + url; //Cambiar a la url donde se alojara la API
   let xmlhttp = new XMLHttpRequest();
   xmlhttp.open(method, urlRoot, true);
-  
 
   xmlhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {

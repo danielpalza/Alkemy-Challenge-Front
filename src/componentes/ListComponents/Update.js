@@ -1,12 +1,12 @@
 import Fetch from "../../services/Fetch";
-import toMoney from 'number-to-money';
-import parseMoney from 'parse-money';
+import toMoney from "number-to-money";
+import parseMoney from "parse-money";
 import { useState } from "react";
 
 export default function Update(p) {
   const [opr, setOpr] = useState({
     concepto: p.body.concepto,
-    monto: "$"+toMoney(p.body.monto),
+    monto: "$" + toMoney(p.body.monto),
     fecha: p.body.fecha,
   });
 
@@ -31,7 +31,7 @@ export default function Update(p) {
   const handleResponse = (e) => {
     if (e.status == "ok") {
       alert("Operacion actualizada");
-      p.setBan(!p.ban)
+      p.setBan(!p.ban);
       p.setLBM("L");
     }
     if (e.status == "Error") {
@@ -42,7 +42,6 @@ export default function Update(p) {
   const handleChange = (e) => {
     setOpr({ ...opr, [e.target.name]: e.target.value });
   };
-  console.log("operacion: ", opr);
 
   return (
     <div className="flex justify-center h-2/4 items-center">

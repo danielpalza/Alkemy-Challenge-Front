@@ -1,10 +1,9 @@
 import Fetch from "../../services/Fetch";
 import { useState } from "react";
 
-
 export default function Login(p) {
   const [user, setUser] = useState({ email: "", password: "" });
- 
+
   const handleLogin = () => {
     if (user.password.length > 0 && user.email.length > 0) {
       Fetch("POST", "/usuario/login", user, "", handleResponse);
@@ -18,20 +17,21 @@ export default function Login(p) {
   };
 
   const handleResponse = (e) => {
-    
     if (e.status === "ok") {
-	  localStorage.setItem("token", e.response.token);	
+      localStorage.setItem("token", e.response.token);
       p.isLogin(true);
     }
-    if(e.status==="Error"){
-        alert(e.message)
+    if (e.status === "Error") {
+      alert(e.message);
     }
   };
 
   return (
     <div className="flex justify-center h-screen items-center">
       <div className="rounded w-screen h-screen md:w-auto md:h-auto bg-green-300 flex flex-col text-center p-8">
-      <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans ">Login</h1>
+        <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans ">
+          Login
+        </h1>
         <input
           name="email"
           placeholder="Email..."
@@ -53,11 +53,13 @@ export default function Login(p) {
           >
             Iniciar sesion
           </button>
-          
-            <button onClick={()=>p.handleRender()} className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200">
-              Registrarse
-            </button>
-          
+
+          <button
+            onClick={() => p.handleRender()}
+            className="bg-green-300 p-3 rounded-md  text-green-900 transform shadow-lg hover:bg-green-400 hover:scale-110 duration-200"
+          >
+            Registrarse
+          </button>
         </div>
       </div>
     </div>

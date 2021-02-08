@@ -41,7 +41,7 @@ export default function Main(e){
     return(
         <Fragment>
             <header className="bg-green-300 flex flex-col md:flex-row text-center justify-between p-4">
-                <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans">Administracion</h1>
+                <h1 className="text-3xl font-bold tracking-tight text-green-900 font-sans">Administración</h1>
                 <div>
                      <h1 className="text-2xl md:text-3x1 font-bold tracking-tight text-green-900 font-sans">Balance: ${balance!=undefined&&toMoney(balance)}</h1>
                 </div>

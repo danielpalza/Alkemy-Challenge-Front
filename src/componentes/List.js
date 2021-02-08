@@ -11,6 +11,12 @@ function List(p) {
   const [ban, setBan] = useState(false)
   const [lbm, setLBM] = useState("L");
   const [body, setBody] = useState();
+  
+  const def= <li key={1}>
+              <div className="flex flex-col md:flex-row justify-center bg-green-200 text-lg  rounded p-2 md:p-3 m-2 md:m-2 ">
+                <p className="text-xl">Sin registros</p>
+              </div>
+            </li>;
 
   const handleResponse = (e) => {
     setOpr(e.response);
@@ -72,7 +78,7 @@ function List(p) {
   }, [opr]);
 
   return lbm == "L" ? (
-    <ul>{list.length > 0 && list.map((a) => a)}</ul>
+    <ul>{list.length > 0 ? list.map((a) => a) : def }</ul>
   ) : lbm == "M" ? (
     <Update body={body} setBan={setBan} ban={ban} setOpr={setOpr} opr={opr} setLBM={setLBM} />
   ) : (

@@ -18,12 +18,13 @@ export default function Login(p) {
   };
 
   const handleResponse = (e) => {
-    localStorage.setItem("token", e.response.token);
+    
     if (e.status === "ok") {
+	  localStorage.setItem("token", e.response.token);	
       p.isLogin(true);
     }
     if(e.status==="Error"){
-        alert("No se pudo iniciar sesion")
+        alert(e.message)
     }
   };
 

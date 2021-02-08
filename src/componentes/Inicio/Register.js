@@ -7,16 +7,21 @@ export default function Register(p) {
     password: "",
     confirmacion: "",
   });
+  let regx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g;
 
   const handleRegister = (e) => {
-    if (user.password == user.confirmacion) {
-      if (user.password.length > 0 && user.email.length > 0) {
-        Fetch("POST", "/usuario/createUser", user, "", handleResponse);
+    if (regx.test(user.email)) {
+      if (user.password == user.confirmacion) {
+        if (user.password.length > 0) {
+          Fetch("POST", "/usuario/createUser", user, "", handleResponse);
+        } else {
+          alert("Debe completar todos los campos");
+        }
       } else {
-        alert("Debe completar todos los campos");
+        alert("Las contraseñas no son identicas");
       }
     } else {
-      alert("Las contraseñas no son identicas");
+      alert("Debe poner un email valido");
     }
   };
 

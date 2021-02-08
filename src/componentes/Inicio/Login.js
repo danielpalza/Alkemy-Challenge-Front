@@ -3,13 +3,19 @@ import { useState } from "react";
 
 export default function Login(p) {
   const [user, setUser] = useState({ email: "", password: "" });
+  let regx=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g
+
 
   const handleLogin = () => {
-    if (user.password.length > 0 && user.email.length > 0) {
+   if(regx.test(user.email)){
+    if (user.password.length > 0 ) {
       Fetch("POST", "/usuario/login", user, "", handleResponse);
     } else {
       alert("Debe completar todos los campos");
     }
+   }else {
+    alert("Debe poner un email valido");
+  }
   };
 
   const handleChange = (e) => {

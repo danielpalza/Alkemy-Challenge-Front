@@ -6,11 +6,11 @@ Esta es una app creada para llevar a cabo un registro de los gastos, tanto ingre
 
 ## Demo
 
-![Login](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/Login.JPG) 
+![Login](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/img/Login.JPG) 
 
-![Interfaz](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/Interfaz.JPG)
+![Interfaz](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/img/Interfaz.JPG)
 
-![Movil](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/Movil.JPG)
+![Movil](https://github.com/danielpalza/Alkemy-Challenge-Front/blob/master/img/Movil.JPG)
 
 
 ## Instrucciones de uso

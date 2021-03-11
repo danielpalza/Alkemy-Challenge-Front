@@ -8,7 +8,7 @@ function App() {
   //Comprabacion del token
   const Auth = () => {
     if (localStorage.getItem("token")) {
-      let urlRoot = "http://localhost:4000/usuario/auth"; //Cambiar a la url donde se alojara la API
+      let urlRoot = "https://alkemy-back-api.herokuapp.com/"; //Cambiar a la url donde se alojara la API
       let xmlhttp = new XMLHttpRequest();
       xmlhttp.open("GET", urlRoot, true);
       xmlhttp.onreadystatechange = function () {

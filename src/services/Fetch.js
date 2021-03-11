@@ -1,7 +1,7 @@
 //Send y Receive Json data through ajax
 
 export default function Fetch(method, url, body = {}, token = "", action = {}) {
-  let urlRoot = "https://alkemy-back-api.herokuapp.com/" + url; //Cambiar a la url donde se alojara la API
+  let urlRoot = "https://alkemy-back-api.herokuapp.com" + url; //Cambiar a la url donde se alojara la API
   let xmlhttp = new XMLHttpRequest();
   xmlhttp.open(method, urlRoot, true);
 
